@@ -1,0 +1,192 @@
+
+app.post("/flood-assessment", async (req, res) => {
+
+    console.log("Flood Assessment Request Received");
+    console.log(req.body);
+
+    try {<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flood Assessment</title>
+
+<style>
+body{
+  font-family: Arial;
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+  color:white;
+  margin:0;
+}
+
+.container{
+  width:90%;
+  max-width:900px;
+  margin:auto;
+  background:rgba(0,0,0,0.6);
+  padding:20px;
+  border-radius:15px;
+}
+
+.question{
+  margin:15px 0;
+  padding:10px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  font-size:18px;
+  background:#00ffcc;
+  border:none;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🌊 Flood Awareness Assessment</h2>
+
+<!-- Q1 -->
+<div class="question">
+<p>1. What should be the first action taken during a flood emergency?</p>
+<input type="radio" name="q1" value="a"> Staying in a low-lying area is the safest option during a flood.<br>
+<input type="radio" name="q1" value="b"> Moving to higher ground immediately is the safest action during a flood.<br>
+<input type="radio" name="q1" value="c"> Playing in floodwater is a safe activity during a flood.<br>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<p>2. What is the main cause of flooding in most areas?</p>
+<input type="radio" name="q2" value="a"> Heavy rainfall is one of the primary causes of flooding.<br>
+<input type="radio" name="q2" value="b"> Heat is the main reason for flooding in most areas.<br>
+<input type="radio" name="q2" value="c"> Wind alone is responsible for causing floods.<br>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<p>3. Which activity should be avoided during a flood emergency?</p>
+<input type="radio" name="q3" value="a"> Walking through floodwater should be avoided during a flood.<br>
+<input type="radio" name="q3" value="b"> Staying in a safe place is recommended during a flood.<br>
+<input type="radio" name="q3" value="c"> Listening to emergency alerts helps people stay safe.<br>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<p>4. Which location is considered safest during a flood?</p>
+<input type="radio" name="q4" value="a"> High ground is considered the safest place during a flood.<br>
+<input type="radio" name="q4" value="b"> A basement is the safest place during a flood emergency.<br>
+<input type="radio" name="q4" value="c"> Staying near a riverside is recommended during a flood.<br>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<p>5. How should floodwater generally be considered?</p>
+<input type="radio" name="q5" value="a"> Floodwater is usually clean and safe for drinking.<br>
+<input type="radio" name="q5" value="b"> Floodwater is often dirty and may contain contaminants.<br>
+<input type="radio" name="q5" value="c"> Floodwater is naturally sweet and harmless.<br>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<p>6. What essential items should be carried during a flood evacuation?</p>
+<input type="radio" name="q6" value="a"> Food and drinking water should be carried during emergencies.<br>
+<input type="radio" name="q6" value="b"> Carrying only toys is sufficient during a flood evacuation.<br>
+<input type="radio" name="q6" value="c"> No emergency supplies are needed during a flood.<br>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<p>7. Which source provides the most reliable flood warning information?</p>
+<input type="radio" name="q7" value="a"> Government alerts provide official and reliable flood warnings.<br>
+<input type="radio" name="q7" value="b"> Friends are always the most reliable source of emergency information.<br>
+<input type="radio" name="q7" value="c"> Social media rumors should always be trusted during floods.<br>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<p>8. Which object should people avoid touching during a flood?</p>
+<input type="radio" name="q8" value="a"> Electric poles should be avoided because they may be dangerous.<br>
+<input type="radio" name="q8" value="b"> Trees are always dangerous and should never be approached.<br>
+<input type="radio" name="q8" value="c"> Walls are the most dangerous objects during every flood situation.<br>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<p>9. What is an important item that should be included in a rescue kit?</p>
+<input type="radio" name="q9" value="a"> A rescue kit should include food and other essential supplies.<br>
+<input type="radio" name="q9" value="b"> A rescue kit should contain only toys and games.<br>
+<input type="radio" name="q9" value="c"> A rescue kit does not need any emergency items.<br>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<p>10. What should a person do if they become trapped during a flood?</p>
+<input type="radio" name="q10" value="a"> Moving to the roof can help rescuers locate the person safely.<br>
+<input type="radio" name="q10" value="b"> Remaining in floodwater is the safest choice during an emergency.<br>
+<input type="radio" name="q10" value="c"> Walking through flooded roads is recommended during rescue situations.<br>
+</div>
+<br>
+
+<button onclick="submitQuiz()">Submit Assessment</button>
+
+</div>
+
+<script>
+function submitQuiz(){
+
+  let answers = {
+    q1:"b", q2:"a", q3:"a", q4:"a", q5:"b",
+    q6:"a", q7:"a", q8:"a", q9:"a", q10:"a"
+  };
+
+  let score = 0;
+
+  for(let q in answers){
+    let selected = document.querySelector('input[name="'+q+'"]:checked');
+    if(selected && selected.value === answers[q]){
+      score++;
+    }
+  }
+
+  localStorage.setItem("score", score);
+localStorage.setItem("total", 10);
+
+const currentUser = JSON.parse(
+    localStorage.getItem("disastersafe_current_user")
+);
+
+fetch("http://localhost:3001/flood-assessment", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        email: currentUser.email,
+        score: score,
+        total: 10
+    })
+})
+.then(res => res.json())
+.then(data => {
+
+    if(data.success){
+        window.location.href = "floodresult.html";
+    }else{
+        alert(data.message);
+    }
+
+})
+.catch(err => {
+    console.log(err);
+    alert("Server Error");
+});
+}
+</script>
+
+</body>
+</html>

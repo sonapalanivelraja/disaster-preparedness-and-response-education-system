@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fire Assessment</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#fff3f3;
+margin:0;
+}
+
+.container{
+width:90%;
+max-width:900px;
+margin:30px auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 10px gray;
+}
+
+h1{
+text-align:center;
+color:#cc0000;
+}
+
+.question{
+margin:20px 0;
+padding:15px;
+border-bottom:1px solid #ddd;
+}
+
+.q{
+font-weight:bold;
+margin-bottom:10px;
+}
+
+label{
+display:block;
+margin:8px 0;
+cursor:pointer;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:#cc0000;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#a30000;
+}
+
+.result{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+color:green;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔥 Fire Safety Assessment</h1>
+
+<form id="quizForm">
+
+<!-- Q1 -->
+<div class="question">
+<div class="q">1. What is the most common cause of fire accidents in homes and residential buildings?</div>
+<label><input type="radio" name="q1" value="a"> Faulty electrical wiring and overloaded circuits are a common cause of fire accidents.</label>
+<label><input type="radio" name="q1" value="b"> Properly maintained electrical systems usually cause fires.</label>
+<label><input type="radio" name="q1" value="c"> Sunlight entering through windows is the main cause of fires.</label>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<div class="q">2. Which of the following materials can help a fire spread more quickly?</div>
+<label><input type="radio" name="q2" value="a"> Dry paper and other combustible materials can help fire spread rapidly.</label>
+<label><input type="radio" name="q2" value="b"> Water helps fire spread more quickly.</label>
+<label><input type="radio" name="q2" value="c"> Metal objects usually help fire spread faster.</label>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<div class="q">3. What should be your first action when a fire emergency occurs?</div>
+<label><input type="radio" name="q3" value="a"> You should remain calm and follow safety procedures.</label>
+<label><input type="radio" name="q3" value="b"> You should run randomly without thinking.</label>
+<label><input type="radio" name="q3" value="c"> You should hide inside a room immediately.</label>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<div class="q">4. Which equipment is commonly used to extinguish a small fire?</div>
+<label><input type="radio" name="q4" value="a"> A fire extinguisher is used to control small fires.</label>
+<label><input type="radio" name="q4" value="b"> An electric fan is used to stop fires.</label>
+<label><input type="radio" name="q4" value="c"> A mobile phone is used to extinguish fires.</label>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<div class="q">5. Which element is necessary for a fire to continue burning?</div>
+<label><input type="radio" name="q5" value="a"> Oxygen is necessary for a fire to burn.</label>
+<label><input type="radio" name="q5" value="b"> Water is necessary for a fire to burn.</label>
+<label><input type="radio" name="q5" value="c"> Ice is necessary for a fire to burn.</label>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<div class="q">6. Which route should be used to evacuate safely during a building fire?</div>
+<label><input type="radio" name="q6" value="a"> People should use the lift during a fire emergency.</label>
+<label><input type="radio" name="q6" value="b"> People should use the stairs to evacuate safely.</label>
+<label><input type="radio" name="q6" value="c"> People should use the elevator during a fire.</label>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<div class="q">7. What should be used to cover the nose and mouth in a smoke-filled area?</div>
+<label><input type="radio" name="q7" value="a"> A cloth or handkerchief should be used to cover the nose and mouth.</label>
+<label><input type="radio" name="q7" value="b"> A sheet of paper should be used to cover the nose and mouth.</label>
+<label><input type="radio" name="q7" value="c"> Only bare hands should be used to cover the nose and mouth.</label>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<div class="q">8. What is the primary purpose of a fire alarm system?</div>
+<label><input type="radio" name="q8" value="a"> A fire alarm is used to warn people about a fire emergency.</label>
+<label><input type="radio" name="q8" value="b"> A fire alarm is mainly used for decoration purposes.</label>
+<label><input type="radio" name="q8" value="c"> A fire alarm is used to play music in a building.</label>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<div class="q">9. What should a person do if their clothes catch fire?</div>
+<label><input type="radio" name="q9" value="a"> The person should follow the Stop, Drop, and Roll procedure.</label>
+<label><input type="radio" name="q9" value="b"> The person should run as fast as possible.</label>
+<label><input type="radio" name="q9" value="c"> The person should jump continuously.</label>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<div class="q">10. When should the emergency fire service number be contacted?</div>
+<label><input type="radio" name="q10" value="a"> The emergency fire service number should be called during a fire emergency.</label>
+<label><input type="radio" name="q10" value="b"> The emergency fire service number should be called for weather updates.</label>
+<label><input type="radio" name="q10" value="c"> The emergency fire service number should be called for traffic information.</label>
+</div>
+
+<button type="button" onclick="checkResult()">Submit</button>
+
+</form>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function checkResult(){
+let score = 0;
+
+let answers = {
+q1:"a",
+q2:"a",
+q3:"a",
+q4:"a",
+q5:"a",
+q6:"b",
+q7:"a",
+q8:"a",
+q9:"a",
+q10:"a"
+};
+
+for(let i=1;i<=10;i++){
+let q = document.querySelector('input[name="q'+i+'"]:checked');
+if(q && q.value === answers["q"+i]){
+score++;
+}
+}
+localStorage.setItem("score", score);
+  localStorage.setItem("total", 10);
+
+  window.location.href = "fireresult.html";
+
+
+}
+
+</script>
+
+</body>
+</html>

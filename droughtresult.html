@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drought Quiz Result</title>
+
+<style>
+    body{
+        margin:0;
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-family:'Segoe UI',sans-serif;
+        background:linear-gradient(135deg,#8d6e63,#a1887f,#d7ccc8);
+    }
+
+    .card{
+        width:380px;
+        padding:35px;
+        border-radius:25px;
+        background:rgba(255,255,255,0.12);
+        backdrop-filter:blur(15px);
+        box-shadow:0 10px 30px rgba(0,0,0,0.4);
+        text-align:center;
+        color:white;
+        border:1px solid rgba(255,255,255,0.2);
+    }
+
+    h1{
+        color:#ffb300;
+        text-shadow:0 0 10px #ffb300;
+        margin-bottom:10px;
+    }
+
+    .student-name{
+        font-size:18px;
+        margin-bottom:15px;
+        color:#ffffff;
+        font-weight:bold;
+    }
+
+    .circle{
+        width:150px;
+        height:150px;
+        border-radius:50%;
+        background:conic-gradient(#ffb300 0deg,#6d4c41 0deg);
+        margin:20px auto;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        box-shadow:0 0 25px rgba(255,179,0,0.8);
+    }
+
+    .inner{
+        width:115px;
+        height:115px;
+        background:#4e342e;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+    }
+
+    .percent{
+        font-size:28px;
+        font-weight:900;
+        color:#ffb300;
+    }
+
+    .label{
+        font-size:12px;
+        color:#ddd;
+    }
+
+    .scoreBox{
+        margin-top:20px;
+        font-size:20px;
+        font-weight:bold;
+    }
+
+    .pass{
+        color:#00ff99;
+        font-size:24px;
+        font-weight:900;
+        margin-top:15px;
+    }
+
+    .fail{
+        color:#ff4d4d;
+        font-size:24px;
+        font-weight:900;
+        margin-top:15px;
+    }
+
+    button{
+        margin-top:25px;
+        padding:12px 25px;
+        border:none;
+        border-radius:50px;
+        background:linear-gradient(45deg,#ffb300,#ff6f00);
+        color:white;
+        font-size:15px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:.3s;
+    }
+
+    button:hover{
+        transform:scale(1.05);
+        box-shadow:0 0 20px #ffb300;
+    }
+
+    .icon{
+        font-size:50px;
+        margin-bottom:10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="icon">🌵</div>
+
+    <h1>DROUGHT RESULT</h1>
+
+    <div class="student-name" id="studentName"></div>
+
+    <div class="circle" id="circle">
+        <div class="inner">
+            <div class="percent" id="percent">0%</div>
+            <div class="label">Percentage</div>
+        </div>
+    </div>
+
+    <div class="scoreBox">
+        Score: <span id="score"></span>
+    </div>
+
+    <div id="status"></div>
+
+    <button onclick="goCertificate()">
+        🎓 Get Certificate
+    </button>
+
+</div>
+
+<script>
+
+    // Fetch data from localStorage
+    let score = Number(localStorage.getItem("score")) || 0;
+    let total = Number(localStorage.getItem("total")) || 10;
+    let studentName = localStorage.getItem("studentName") || "Student";
+
+    document.getElementById("studentName").innerHTML =
+        "👨‍🎓 " + studentName;
+
+    let percentage = (score / total) * 100;
+
+    document.getElementById("score").innerText =
+        score + " / " + total;
+
+    let circle = document.getElementById("circle");
+    let percentText = document.getElementById("percent");
+
+    let current = 0;
+
+    let interval = setInterval(() => {
+
+        if(current <= percentage){
+
+            percentText.innerText =
+                current.toFixed(0) + "%";
+
+            let angle = (current / 100) * 360;
+
+            circle.style.background =
+            `conic-gradient(
+                #ffb300 ${angle}deg,
+                #6d4c41 ${angle}deg
+            )`;
+
+            current++;
+
+        }else{
+            clearInterval(interval);
+        }
+
+    },15);
+
+    let status = document.getElementById("status");
+
+    if(percentage >= 50){
+
+        status.innerHTML =
+        "<div class='pass'>✔ PASS</div>";
+
+    }else{
+
+        status.innerHTML =
+        "<div class='fail'>✖ FAIL</div>";
+
+    }
+
+    function goCertificate(){
+
+        if(percentage >= 50){
+
+            window.location.href = "droughtcertificate.html";
+
+        }else{
+
+            alert("Sorry! Only passed students can get certificates.");
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Landslide Assessment</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#8B4513,#A0522D);
+  color:white;
+  margin:0;
+  padding:20px;
+}
+
+.container{
+  width:90%;
+  max-width:900px;
+  margin:auto;
+  background:rgba(0,0,0,0.6);
+  padding:20px;
+  border-radius:15px;
+}
+
+h2{
+  text-align:center;
+}
+
+.question{
+  margin:15px 0;
+  padding:15px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+}
+
+.question p{
+  font-weight:bold;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  font-size:18px;
+  background:#D2691E;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#A0522D;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>⛰️ Landslide Awareness Assessment</h2>
+
+<!-- Q1 -->
+<div class="question">
+<p>1. What is a landslide?</p>
+<input type="radio" name="q1" value="a"> A water overflow event is commonly known as a flood.</input><br>
+<input type="radio" name="q1" value="b"> A landslide is the movement of soil, rocks, and debris down a slope.</input><br>
+<input type="radio" name="q1" value="c"> Strong wind is not considered a landslide.</input><br>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<p>2. Which is a common cause of landslides?</p>
+<input type="radio" name="q2" value="a"> Heavy rainfall is one of the most common causes of landslides.</input><br>
+<input type="radio" name="q2" value="b"> Snowfall is not the primary cause of most landslides.</input><br>
+<input type="radio" name="q2" value="c"> Sunshine alone does not usually trigger landslides.</input><br>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<p>3. What should you do during a landslide?</p>
+<input type="radio" name="q3" value="a"> You should move to a safe area immediately during a landslide.</input><br>
+<input type="radio" name="q3" value="b"> Staying near the slope can increase the risk of injury.</input><br>
+<input type="radio" name="q3" value="c"> Taking photos should not be your priority during a landslide.</input><br>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<p>4. Which area is safest during a landslide?</p>
+<input type="radio" name="q4" value="a"> Areas near cliffs can be dangerous during a landslide.</input><br>
+<input type="radio" name="q4" value="b"> Areas away from slopes and valleys are generally safer during a landslide.</input><br>
+<input type="radio" name="q4" value="c"> River banks may not be safe during a landslide emergency.</input><br>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<p>5. Which warning sign may indicate a landslide?</p>
+<input type="radio" name="q5" value="a"> Cracks appearing in the ground can be a warning sign of a landslide.</input><br>
+<input type="radio" name="q5" value="b"> A clear sky is not a warning sign of a landslide.</input><br>
+<input type="radio" name="q5" value="c"> Cool weather alone does not indicate a landslide.</input><br>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<p>6. What should be included in an emergency kit?</p>
+<input type="radio" name="q6" value="a"> An emergency kit should contain food and drinking water.</input><br>
+<input type="radio" name="q6" value="b"> Video games are not essential items in an emergency kit.</input><br>
+<input type="radio" name="q6" value="c"> Toys alone are not sufficient for emergency preparedness.</input><br>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<p>7. Who provides official landslide warnings?</p>
+<input type="radio" name="q7" value="a"> Government authorities provide official landslide warnings and updates.</input><br>
+<input type="radio" name="q7" value="b"> Rumors should not be relied upon for landslide warnings.</input><br>
+<input type="radio" name="q7" value="c"> Neighbors alone are not official sources of emergency warnings.</input><br>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<p>8. What should you avoid after a landslide?</p>
+<input type="radio" name="q8" value="a"> Returning immediately to the affected area should be avoided after a landslide.</input><br>
+<input type="radio" name="q8" value="b"> Listening to officials is important after a landslide event.</input><br>
+<input type="radio" name="q8" value="c"> Staying alert helps ensure safety after a landslide.</input><br>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<p>9. Landslides can damage?</p>
+<input type="radio" name="q9" value="a"> Landslides can damage roads, buildings, and other infrastructure.</input><br>
+<input type="radio" name="q9" value="b"> Clouds are not damaged by landslides.</input><br>
+<input type="radio" name="q9" value="c"> Sunlight cannot be damaged by a landslide.</input><br>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<p>10. What is the best action if authorities issue an evacuation order?</p>
+<input type="radio" name="q10" value="a"> You should evacuate immediately when authorities issue an evacuation order.</input><br>
+<input type="radio" name="q10" value="b"> Ignoring an evacuation order can put your safety at risk.</input><br>
+<input type="radio" name="q10" value="c"> Waiting until danger arrives is not a safe decision.</input><br>
+</div>
+
+<br>
+
+<button onclick="submitQuiz()">Submit Assessment</button>
+
+</div>
+
+<script>
+function submitQuiz(){
+
+  let answers = {
+    q1:"b",
+    q2:"a",
+    q3:"a",
+    q4:"b",
+    q5:"a",
+    q6:"a",
+    q7:"a",
+    q8:"a",
+    q9:"a",
+    q10:"a"
+  };
+
+  let score = 0;
+
+  for(let q in answers){
+    let selected = document.querySelector('input[name="'+q+'"]:checked');
+
+    if(selected && selected.value === answers[q]){
+      score++;
+    }
+  }
+
+  localStorage.setItem("score", score);
+  localStorage.setItem("total", 10);
+
+  window.location.href = "landslideresult.html";
+}
+</script>
+
+</body>
+</html>
+```

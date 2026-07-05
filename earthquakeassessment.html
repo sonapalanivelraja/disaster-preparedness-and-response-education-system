@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Earthquake Assessment</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ff7b00,#d62828);
+  color:white;
+  margin:0;
+}
+
+.container{
+  width:90%;
+  max-width:900px;
+  margin:20px auto;
+  background:rgba(0,0,0,0.65);
+  padding:20px;
+  border-radius:15px;
+}
+
+.question{
+  margin:15px 0;
+  padding:15px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+}
+
+.question p{
+  font-weight:bold;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  font-size:18px;
+  background:#00ffcc;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#00d4aa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🌍 Advanced Earthquake Awareness Assessment</h2>
+
+<!-- Q1 -->
+<div class="question">
+<p>1. Which scale is commonly used to measure earthquake magnitude?</p>
+<input type="radio" name="q1" value="a"> The Mercalli Scale is mainly used to measure the intensity and effects of an earthquake.<br>
+<input type="radio" name="q1" value="b"> The Richter Scale is commonly used to measure earthquake magnitude.<br>
+<input type="radio" name="q1" value="c"> The Celsius Scale is used to measure temperature, not earthquakes.<br>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<p>2. What is the point inside the Earth where an earthquake originates?</p>
+<input type="radio" name="q2" value="a"> The epicenter is the point on the Earth's surface directly above the earthquake source.<br>
+<input type="radio" name="q2" value="b"> A fault plane is the surface along which rocks move during an earthquake.<br>
+<input type="radio" name="q2" value="c"> The focus, also called the hypocenter, is the point where an earthquake begins inside the Earth.<br>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<p>3. Which tectonic boundary is most associated with powerful earthquakes?</p>
+<input type="radio" name="q3" value="a"> Convergent boundaries are often associated with powerful earthquakes.<br>
+<input type="radio" name="q3" value="b"> Divergent boundaries usually create less powerful earthquakes.<br>
+<input type="radio" name="q3" value="c"> Transform boundaries can also produce significant earthquakes.<br>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<p>4. Which seismic wave travels fastest through the Earth?</p>
+<input type="radio" name="q4" value="a"> Surface waves travel along the Earth's surface and are generally slower.<br>
+<input type="radio" name="q4" value="b"> P-Waves are the fastest seismic waves and arrive first.<br>
+<input type="radio" name="q4" value="c"> S-Waves travel slower than P-Waves through the Earth.<br>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<p>5. Soil losing strength due to earthquake shaking is called?</p>
+<input type="radio" name="q5" value="a"> Erosion is the gradual removal of soil by wind or water.<br>
+<input type="radio" name="q5" value="b"> Weathering is the breakdown of rocks over time.<br>
+<input type="radio" name="q5" value="c"> Liquefaction occurs when soil loses strength during earthquake shaking.<br>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<p>6. Earthquake magnitude measures what?</p>
+<input type="radio" name="q6" value="a"> Earthquake magnitude measures the amount of energy released.<br>
+<input type="radio" name="q6" value="b"> Building damage is not directly measured by earthquake magnitude.<br>
+<input type="radio" name="q6" value="c"> The duration of shaking alone does not determine magnitude.<br>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<p>7. A strong undersea earthquake can trigger which disaster?</p>
+<input type="radio" name="q7" value="a"> Tornadoes are not usually caused by undersea earthquakes.<br>
+<input type="radio" name="q7" value="b"> A strong undersea earthquake can trigger a tsunami.<br>
+<input type="radio" name="q7" value="c"> Droughts are not caused by earthquakes beneath the ocean.<br>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<p>8. What is the recommended action during strong indoor shaking?</p>
+<input type="radio" name="q8" value="a"> Running to an elevator during an earthquake is unsafe.<br>
+<input type="radio" name="q8" value="b"> Standing near windows can increase the risk of injury.<br>
+<input type="radio" name="q8" value="c"> Drop, Cover, and Hold On is the recommended safety action.<br>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<p>9. Which instrument records seismic waves?</p>
+<input type="radio" name="q9" value="a"> A seismograph is used to record seismic waves.<br>
+<input type="radio" name="q9" value="b"> A thermometer is used to measure temperature.<br>
+<input type="radio" name="q9" value="c"> A hygrometer is used to measure humidity in the air.<br>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<p>10. Smaller earthquakes that follow a major earthquake are called?</p>
+<input type="radio" name="q10" value="a"> Foreshocks occur before the main earthquake event.<br>
+<input type="radio" name="q10" value="b"> Aftershocks are smaller earthquakes that occur after a major earthquake.<br>
+<input type="radio" name="q10" value="c"> Microbursts are weather-related events and not earthquakes.<br>
+</div>
+<br>
+
+<button onclick="submitQuiz()">Submit Assessment</button>
+
+</div>
+
+<script>
+function submitQuiz(){
+
+  let answers = {
+    q1:"b",
+    q2:"c",
+    q3:"a",
+    q4:"b",
+    q5:"c",
+    q6:"a",
+    q7:"b",
+    q8:"c",
+    q9:"a",
+    q10:"b"
+  };
+
+  let score = 0;
+
+  for(let q in answers){
+    let selected = document.querySelector('input[name="'+q+'"]:checked');
+
+    if(selected && selected.value === answers[q]){
+      score++;
+    }
+  }
+
+  localStorage.setItem("score", score);
+  localStorage.setItem("total", 10);
+
+  window.location.href = "earthquakeresult.html";
+}
+</script>
+
+</body>
+</html>
+```

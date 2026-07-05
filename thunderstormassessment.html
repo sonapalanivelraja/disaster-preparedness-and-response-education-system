@@ -1,0 +1,187 @@
+ id="thunderstormassessment"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thunderstorm Assessment</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#4a148c,#7b1fa2);
+  color:white;
+  margin:0;
+  padding:20px;
+}
+
+.container{
+  width:90%;
+  max-width:900px;
+  margin:auto;
+  background:rgba(0,0,0,0.6);
+  padding:20px;
+  border-radius:15px;
+}
+
+h2{
+  text-align:center;
+}
+
+.question{
+  margin:15px 0;
+  padding:15px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+}
+
+.question p{
+  font-weight:bold;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  font-size:18px;
+  background:#9c27b0;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#6a1b9a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>⛈️ Thunderstorm Awareness Assessment</h2>
+<!-- Q1 -->
+<div class="question">
+<p>1. What is a thunderstorm and how is it characterized?</p>
+<input type="radio" name="q1" value="a"> A thunderstorm is a storm that includes thunder and lightning.<br>
+<input type="radio" name="q1" value="b"> A thunderstorm is a type of earthquake.<br>
+<input type="radio" name="q1" value="c"> A thunderstorm is a form of landslide.<br>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<p>2. What weather condition often accompanies a thunderstorm?</p>
+<input type="radio" name="q2" value="a"> Lightning often accompanies a thunderstorm.<br>
+<input type="radio" name="q2" value="b"> Snow alone usually accompanies a thunderstorm.<br>
+<input type="radio" name="q2" value="c"> Earthquake waves often accompany a thunderstorm.<br>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<p>3. Where is the safest place to stay during a thunderstorm?</p>
+<input type="radio" name="q3" value="a"> Staying indoors is the safest option during a thunderstorm.<br>
+<input type="radio" name="q3" value="b"> Standing under a tree is the safest option during a thunderstorm.<br>
+<input type="radio" name="q3" value="c"> Remaining in an open field is the safest option during a thunderstorm.<br>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<p>4. What activity should be avoided during a thunderstorm?</p>
+<input type="radio" name="q4" value="a"> Using electrical appliances should be avoided during a thunderstorm.<br>
+<input type="radio" name="q4" value="b"> Staying indoors should be avoided during a thunderstorm.<br>
+<input type="radio" name="q4" value="c"> Listening to weather alerts should be avoided during a thunderstorm.<br>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<p>5. What can lightning cause during a thunderstorm?</p>
+<input type="radio" name="q5" value="a"> Lightning can cause fires and serious injuries.<br>
+<input type="radio" name="q5" value="b"> Lightning can directly cause snowfall.<br>
+<input type="radio" name="q5" value="c"> Lightning can create volcanoes.<br>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<p>6. What essential items should be included in an emergency kit?</p>
+<input type="radio" name="q6" value="a"> Food and drinking water should be included in an emergency kit.<br>
+<input type="radio" name="q6" value="b"> Toys alone are sufficient for an emergency kit.<br>
+<input type="radio" name="q6" value="c"> An emergency kit does not require any items.<br>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<p>7. Who is responsible for issuing official thunderstorm warnings?</p>
+<input type="radio" name="q7" value="a"> Official weather authorities issue thunderstorm warnings.<br>
+<input type="radio" name="q7" value="b"> Rumors are responsible for issuing thunderstorm warnings.<br>
+<input type="radio" name="q7" value="c"> Friends alone issue official thunderstorm warnings.<br>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<p>8. What should people stay away from during a thunderstorm?</p>
+<input type="radio" name="q8" value="a"> People should stay away from water bodies during a thunderstorm.<br>
+<input type="radio" name="q8" value="b"> People should stay away from safe buildings during a thunderstorm.<br>
+<input type="radio" name="q8" value="c"> People should stay away from emergency shelters during a thunderstorm.<br>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<p>9. What problems may be caused by strong thunderstorms?</p>
+<input type="radio" name="q9" value="a"> Strong thunderstorms may cause power outages.<br>
+<input type="radio" name="q9" value="b"> Strong thunderstorms always cause earthquakes.<br>
+<input type="radio" name="q9" value="c"> Strong thunderstorms cause only landslides.<br>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<p>10. What should you do when a thunderstorm warning is issued?</p>
+<input type="radio" name="q10" value="a"> You should take shelter immediately when a warning is issued.<br>
+<input type="radio" name="q10" value="b"> You should ignore the warning and continue your activities.<br>
+<input type="radio" name="q10" value="c"> You should go outside during the thunderstorm.<br>
+</div>
+
+
+
+
+<br>
+
+<button onclick="submitQuiz()">Submit Assessment</button>
+
+</div>
+
+<script>
+function submitQuiz(){
+
+  let answers = {
+    q1:"a",
+    q2:"a",
+    q3:"a",
+    q4:"a",
+    q5:"a",
+    q6:"a",
+    q7:"a",
+    q8:"a",
+    q9:"a",
+    q10:"a"
+  };
+
+  let score = 0;
+
+  for(let q in answers){
+    let selected = document.querySelector('input[name="'+q+'"]:checked');
+
+    if(selected && selected.value === answers[q]){
+      score++;
+    }
+  }
+
+  localStorage.setItem("score", score);
+  localStorage.setItem("total", 10);
+
+  window.location.href = "thunderstormresult.html";
+}
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disaster Preparedness & Response Education System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#001f3f,#004d7a,#008793);
+    min-height:100vh;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+h1{
+    font-size:55px;
+    margin-top:20px;
+    margin-bottom:20px;
+    line-height:1.2;
+}
+
+h1 span{
+    color:#00ffd5;
+}
+
+.intro{
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#00ffd5;
+    color:black;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+    font-size:18px;
+    transition:0.3s;
+    margin-bottom:40px;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:white;
+}
+
+/* Disaster Photos Section */
+
+.section-title{
+    color:#00ffd5;
+    margin-bottom:20px;
+    font-size:32px;
+}
+
+.photos{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.photo-card{
+    background:rgba(255,255,255,0.08);
+    padding:10px;
+    border-radius:15px;
+    backdrop-filter:blur(5px);
+    transition:0.3s;
+}
+
+.photo-card:hover{
+    transform:translateY(-5px);
+}
+
+.photo-card img{
+    width:130px;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+    border:3px solid #00ffd5;
+}
+
+.photo-card p{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+/* Emergency Numbers */
+
+.emergency-box{
+    background:rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:25px;
+    margin-top:20px;
+    box-shadow:0 0 15px rgba(0,255,213,0.3);
+}
+
+.emergency-box h2{
+    color:#00ffd5;
+    margin-bottom:20px;
+}
+
+.emergency-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.emergency-card{
+    background:rgba(255,255,255,0.08);
+    padding:15px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.footer{
+    margin-top:30px;
+    color:#ddd;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+    h1{
+        font-size:35px;
+    }
+
+    .intro{
+        font-size:17px;
+    }
+
+    .photo-card img{
+        width:110px;
+        height:145px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>
+        Disaster <span>Preparedness & Response</span><br>
+        Education System
+    </h1>
+
+    <p class="intro">
+        Empowering Schools and Colleges with Disaster Awareness,
+        Emergency Response Training, Safety Quizzes, Preparedness
+        Assessment and Real-Time Emergency Information.
+    </p>
+
+    <a href="login.html" class="btn">Start Learning</a>
+
+    <!-- Disaster Images -->
+
+    <h2 class="section-title">Major Disaster Types</h2>
+
+    <div class="photos">
+
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=300" alt="Flood">
+            <p>Flood</p>
+        </div>
+
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=300" alt="Earthquake">
+            <p>Earthquake</p>
+        </div>
+
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300" alt="Wildfire">
+            <p>Wildfire</p>
+        </div>
+
+        <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=300" alt="Cyclone">
+            <p>Cyclone</p>
+        </div>
+
+    </div>
+
+    <!-- Emergency Numbers -->
+
+    <div class="emergency-box">
+
+        <h2>Emergency Contact Numbers</h2>
+
+        <div class="emergency-grid">
+
+            <div class="emergency-card">
+                🚨 National Emergency<br>112
+            </div>
+
+            <div class="emergency-card">
+                🚑 Ambulance<br>108
+            </div>
+
+            <div class="emergency-card">
+                🚒 Fire Service<br>101
+            </div>
+
+            <div class="emergency-card">
+                👮 Police<br>100
+            </div>
+
+            <div class="emergency-card">
+                🌊 Disaster Helpline<br>1078
+            </div>
+
+            <div class="emergency-card">
+                ☎ Emergency Operations<br>1070
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Disaster Preparedness & Response Education System
+    </div>
+
+</div>
+
+</body>
+</html>
+```

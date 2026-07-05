@@ -1,0 +1,116 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drought Awareness Video</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right,#f7b733,#fc4a1a);
+}
+
+.container{
+    width:85%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+h1{
+    color:#d35400;
+}
+
+p{
+    color:#444;
+    font-size:18px;
+    line-height:1.8;
+}
+
+video{
+    width:90%;
+    max-width:800px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#d35400;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#a04000;
+}
+
+.next-btn{
+    padding:12px 25px;
+    background:#f39c12;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.next-btn:hover{
+    background:#d68910;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>☀️ Drought Awareness Video ☀️</h1>
+
+<p>
+Watch this video to learn about drought causes, impacts, water conservation,
+preparedness measures, and emergency response strategies. Understanding
+drought awareness helps communities manage water resources effectively
+and reduce the effects of prolonged dry conditions.
+</p>
+
+<video controls>
+    <source src="drought.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<br>
+
+<a href="disaster.html" class="btn">⬅ Back to Disaster Page</a>
+
+<div style="text-align:center; margin-top:20px;">
+    <button onclick="goToAssessment()" class="next-btn">
+        Next ➜ Assessment
+    </button>
+</div>
+
+<script>
+function goToAssessment() {
+    window.location.href = "droughtassessment.html";
+}
+</script>
+
+</div>
+
+</body>
+</html>
+```

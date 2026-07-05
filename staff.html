@@ -1,0 +1,369 @@
+staff.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Dashboard - DisasterSafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+body{ min-height:100vh; background:linear-gradient(135deg,#030b1f,#071b42,#0b2c5c); color:white; }
+
+.navbar{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 30px; background:rgba(255,255,255,.05);
+  backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.08);
+  position:sticky; top:0; z-index:100;
+}
+.nav-logo{ font-size:20px; font-weight:700; color:#7b2cff; }
+.nav-logo span{ color:white; }
+.nav-right{ display:flex; align-items:center; gap:15px; }
+.nav-name{ font-size:14px; color:#ccc; }
+
+.profile-pic-nav{
+  width:45px; height:45px; border-radius:50%;
+  border:2px solid #7b2cff; background:rgba(255,255,255,.1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700; color:#7b2cff; overflow:hidden; cursor:pointer;
+}
+.profile-pic-nav img{ width:100%; height:100%; object-fit:cover; display:none; }
+
+.logout-btn{
+  padding:8px 18px; border:1px solid #ff6b6b; border-radius:20px;
+  background:transparent; color:#ff6b6b; cursor:pointer;
+  font-size:13px; font-family:'Poppins',sans-serif; transition:.3s;
+}
+.logout-btn:hover{ background:#ff6b6b; color:white; }
+
+.main{ padding:30px; max-width:1100px; margin:0 auto; }
+
+.profile-card{
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  border-radius:24px; padding:30px; display:flex; align-items:center;
+  gap:25px; margin-bottom:30px; flex-wrap:wrap;
+}
+.profile-photo-wrapper{ position:relative; flex-shrink:0; }
+.profile-photo{
+  width:100px; height:100px; border-radius:50%; border:3px solid #7b2cff;
+  background:rgba(255,255,255,.1); display:flex; align-items:center;
+  justify-content:center; font-size:36px; font-weight:700; color:#7b2cff;
+  overflow:hidden; cursor:pointer;
+}
+.profile-photo img{ width:100%; height:100%; object-fit:cover; display:none; }
+.upload-badge{
+  position:absolute; bottom:2px; right:2px; background:#7b2cff; color:white;
+  border-radius:50%; width:26px; height:26px; display:flex; align-items:center;
+  justify-content:center; font-size:13px; cursor:pointer; border:2px solid #030b1f;
+}
+#photoInput{ display:none; }
+.profile-info h2{ font-size:22px; font-weight:700; margin-bottom:4px; }
+.role-badge{
+  display:inline-block; background:linear-gradient(45deg,#7b2cff,#a855f7);
+  color:white; font-size:11px; font-weight:700;
+  padding:3px 12px; border-radius:20px; margin-bottom:10px;
+}
+.profile-info .details{ display:flex; flex-wrap:wrap; gap:15px; margin-top:8px; }
+.detail-item{ font-size:13px; color:#ccc; }
+.detail-item span{ color:white; font-weight:500; }
+
+.stats-row{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px; margin-bottom:30px;
+}
+.stat-card{
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  border-radius:18px; padding:20px; text-align:center; transition:.3s;
+}
+.stat-card:hover{ transform:translateY(-3px); border-color:#7b2cff44; }
+.stat-icon{ font-size:28px; margin-bottom:8px; }
+.stat-value{ font-size:26px; font-weight:700; color:#a855f7; }
+.stat-label{ font-size:12px; color:#aaa; margin-top:3px; }
+
+.section-title{
+  font-size:16px; font-weight:600; color:#ccc;
+  margin-bottom:15px; display:flex; align-items:center; gap:8px;
+}
+.section-title::after{ content:''; flex:1; height:1px; background:rgba(255,255,255,.1); }
+
+.table-card{
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  border-radius:18px; padding:20px; margin-bottom:30px; overflow-x:auto;
+}
+table{ width:100%; border-collapse:collapse; }
+th{
+  text-align:left; font-size:12px; color:#aaa; font-weight:600;
+  padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+td{ padding:12px; font-size:13px; border-bottom:1px solid rgba(255,255,255,.05); }
+tr:last-child td{ border-bottom:none; }
+tr:hover td{ background:rgba(255,255,255,.03); }
+
+.status-done{ display:inline-block; padding:3px 10px; border-radius:20px; background:rgba(0,245,100,.1); color:#00f564; font-size:11px; font-weight:600; }
+.status-progress{ display:inline-block; padding:3px 10px; border-radius:20px; background:rgba(255,200,0,.1); color:#ffc800; font-size:11px; font-weight:600; }
+.status-pending{ display:inline-block; padding:3px 10px; border-radius:20px; background:rgba(255,100,100,.1); color:#ff6464; font-size:11px; font-weight:600; }
+
+.drill-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:15px; margin-bottom:30px;
+}
+.drill-card{
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  border-radius:18px; padding:20px;
+}
+.drill-card .drill-type{ font-size:11px; color:#a855f7; font-weight:600; margin-bottom:5px; }
+.drill-card .drill-name{ font-size:15px; font-weight:600; margin-bottom:6px; }
+.drill-card .drill-date{ font-size:12px; color:#aaa; margin-bottom:12px; }
+.drill-btn{
+  padding:8px 16px; border:1px solid #7b2cff; border-radius:10px;
+  background:transparent; color:#a855f7; font-size:12px; font-weight:600;
+  cursor:pointer; font-family:'Poppins',sans-serif; transition:.3s;
+}
+.drill-btn:hover{ background:#7b2cff; color:white; }
+
+.post-box{
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  border-radius:18px; padding:20px; margin-bottom:30px;
+}
+.post-box textarea{
+  width:100%; padding:12px; border:none; border-radius:12px;
+  background:rgba(255,255,255,.08); color:white;
+  font-family:'Poppins',sans-serif; font-size:14px;
+  resize:vertical; min-height:80px; outline:none;
+}
+.post-box textarea::placeholder{ color:#aaa; }
+.post-actions{ display:flex; justify-content:flex-end; margin-top:10px; }
+.post-btn{
+  padding:10px 24px; border:none; border-radius:12px;
+  background:linear-gradient(45deg,#7b2cff,#a855f7);
+  color:white; font-weight:700; font-size:14px; cursor:pointer;
+  font-family:'Poppins',sans-serif;
+}
+
+.announce-list{ margin-bottom:30px; }
+.announce-item{
+  display:flex; align-items:flex-start; gap:15px;
+  padding:14px 0; border-bottom:1px solid rgba(255,255,255,.06);
+}
+.announce-item:last-child{ border-bottom:none; }
+.announce-icon{
+  width:38px; height:38px; border-radius:12px;
+  background:rgba(123,44,255,.15);
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+}
+.announce-text .title{ font-size:14px; font-weight:500; }
+.announce-text .time{ font-size:12px; color:#aaa; margin-top:2px; }
+.announce-tag{
+  margin-left:auto; white-space:nowrap; padding:3px 10px; border-radius:20px;
+  background:rgba(123,44,255,.2); color:#a855f7; font-size:11px; font-weight:600;
+}
+
+@media(max-width:600px){
+  .profile-card{ flex-direction:column; text-align:center; }
+  .profile-info .details{ justify-content:center; }
+  .main{ padding:15px; }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="nav-logo">Disaster<span>Safe</span> — Staff</div>
+  <div class="nav-right">
+    <span class="nav-name" id="navName">Welcome, Staff</span>
+    <div class="profile-pic-nav">
+      <img id="navImg" src="" alt="">
+      <span id="navInitials">S</span>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="profile-card">
+    <div class="profile-photo-wrapper">
+      <div class="profile-photo" onclick="document.getElementById('photoInput').click()">
+        <img id="profileImg" src="" alt="">
+        <span id="photoInitials">S</span>
+      </div>
+      <div class="upload-badge" onclick="document.getElementById('photoInput').click()">✏️</div>
+      <input type="file" id="photoInput" accept="image/*" onchange="uploadPhoto(event)">
+    </div>
+    <div class="profile-info">
+      <h2 id="staffName">Staff Name</h2>
+      <div class="role-badge">👨‍🏫 Staff / Teacher</div>
+      <div class="details">
+        <div class="detail-item">📧 <span id="staffEmail">email@example.com</span></div>
+        <div class="detail-item">🏫 <span id="staffCollege">Institution</span></div>
+        <div class="detail-item">📌 <span>Disaster Education Coordinator</span></div>
+        <div class="detail-item">📅 Since <span>June 2024</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-title">📊 Class Overview</p>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">42</div><div class="stat-label">Total Students</div></div>
+    <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value">29</div><div class="stat-label">Active Learners</div></div>
+    <div class="stat-card"><div class="stat-icon">📝</div><div class="stat-value">18</div><div class="stat-label">Quizzes Assigned</div></div>
+    <div class="stat-card"><div class="stat-icon">🏅</div><div class="stat-value">67%</div><div class="stat-label">Avg. Completion</div></div>
+    <div class="stat-card"><div class="stat-icon">🚨</div><div class="stat-value">5</div><div class="stat-label">Drills Conducted</div></div>
+    <div class="stat-card"><div class="stat-icon">⚠️</div><div class="stat-value">8</div><div class="stat-label">Low Progress</div></div>
+  </div>
+
+  <p class="section-title">👥 Student Progress</p>
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Student Name</th><th>Register No</th><th>Score</th><th>Modules Done</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Aishwarya R</td><td>23ECE001</td><td>1240</td><td>9/9</td><td><span class="status-done">Completed</span></td></tr>
+        <tr><td>2</td><td>Karthik M</td><td>23ECE002</td><td>1105</td><td>8/9</td><td><span class="status-done">Completed</span></td></tr>
+        <tr><td>3</td><td>Priya S</td><td>23ECE003</td><td>990</td><td>7/9</td><td><span class="status-progress">In Progress</span></td></tr>
+        <tr><td>4</td><td>Rahul V</td><td>23ECE004</td><td>820</td><td>6/9</td><td><span class="status-progress">In Progress</span></td></tr>
+        <tr><td>5</td><td>Divya N</td><td>23ECE005</td><td>755</td><td>5/9</td><td><span class="status-progress">In Progress</span></td></tr>
+        <tr><td>6</td><td>Manoj K</td><td>23ECE006</td><td>410</td><td>2/9</td><td><span class="status-pending">Low Progress</span></td></tr>
+        <tr><td>7</td><td>Sneha P</td><td>23ECE007</td><td>290</td><td>1/9</td><td><span class="status-pending">Low Progress</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="section-title">🚨 Drill Schedule</p>
+  <div class="drill-grid">
+    <div class="drill-card">
+      <div class="drill-type">UPCOMING</div>
+      <div class="drill-name">🌊 Flood Evacuation Drill</div>
+      <div class="drill-date">📅 28 Jun 2025 • 10:00 AM</div>
+      <button class="drill-btn">Manage Drill</button>
+    </div>
+    <div class="drill-card">
+      <div class="drill-type">UPCOMING</div>
+      <div class="drill-name">🔥 Fire Safety Drill</div>
+      <div class="drill-date">📅 10 Jul 2025 • 9:00 AM</div>
+      <button class="drill-btn">Manage Drill</button>
+    </div>
+    <div class="drill-card">
+      <div class="drill-type">COMPLETED</div>
+      <div class="drill-name">🌍 Earthquake Mock Drill</div>
+      <div class="drill-date">📅 15 Jun 2025 • 11:00 AM</div>
+      <button class="drill-btn">View Report</button>
+    </div>
+    <div class="drill-card">
+      <div class="drill-type">UPCOMING</div>
+      <div class="drill-name">🏥 First Aid Session</div>
+      <div class="drill-date">📅 05 Jul 2025 • 2:00 PM</div>
+      <button class="drill-btn">Manage Drill</button>
+    </div>
+  </div>
+
+  <p class="section-title">📢 Post Announcement</p>
+  <div class="post-box">
+    <textarea id="announceText" placeholder="Write an announcement for your students..."></textarea>
+    <div class="post-actions">
+      <button class="post-btn" onclick="postAnnouncement()">📢 Post</button>
+    </div>
+  </div>
+
+  <p class="section-title">📋 Recent Announcements</p>
+  <div class="announce-list" id="announceList">
+    <div class="announce-item">
+      <div class="announce-icon">📝</div>
+      <div class="announce-text">
+        <div class="title">Module Test on Cyclone Awareness scheduled for July 12</div>
+        <div class="time">Posted 2 days ago</div>
+      </div>
+      <div class="announce-tag">Test</div>
+    </div>
+    <div class="announce-item">
+      <div class="announce-icon">🚨</div>
+      <div class="announce-text">
+        <div class="title">All students must complete Flood module before the drill</div>
+        <div class="time">Posted 4 days ago</div>
+      </div>
+      <div class="announce-tag">Drill</div>
+    </div>
+    <div class="announce-item">
+      <div class="announce-icon">🏅</div>
+      <div class="announce-text">
+        <div class="title">Certificates issued for Fire Safety — check your portal</div>
+        <div class="time">Posted 1 week ago</div>
+      </div>
+      <div class="announce-tag">General</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+window.onload = function(){
+  const staffAccounts = [
+    { name:"Sona",          email:"sona@gmail.com",     college:"VSB Engineering College" },
+    { name:"Bharani",       email:"bharani@gmail.com",  college:"VSB Engineering College" },
+    { name:"Vignesh",       email:"vicky@gmail.com",    college:"VSB Engineering College" },
+    { name:"Jagadeepkumar", email:"jagadeep@gmail.com", college:"VSB Engineering College" }
+  ];
+  const saved = JSON.parse(localStorage.getItem('disastersafe_staff_user') || '{}');
+  const staff = staffAccounts.find(s => s.email === saved.email) || { name:'Staff Member', email:'—', college:'—' };
+
+  document.getElementById('staffName').textContent    = staff.name;
+  document.getElementById('staffEmail').textContent   = staff.email;
+  document.getElementById('staffCollege').textContent = staff.college;
+  document.getElementById('navName').textContent      = 'Welcome, ' + staff.name.split(' ')[0];
+
+  const initials = staff.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('photoInitials').textContent = initials;
+  document.getElementById('navInitials').textContent   = initials[0];
+
+  const savedPhoto = localStorage.getItem('disastersafe_staff_photo');
+  if(savedPhoto) applyPhoto(savedPhoto);
+};
+
+function uploadPhoto(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    localStorage.setItem('disastersafe_staff_photo', ev.target.result);
+    applyPhoto(ev.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+
+function applyPhoto(src){
+  const pImg = document.getElementById('profileImg');
+  pImg.src = src; pImg.style.display = 'block';
+  document.getElementById('photoInitials').style.display = 'none';
+  const nImg = document.getElementById('navImg');
+  nImg.src = src; nImg.style.display = 'block';
+  document.getElementById('navInitials').style.display = 'none';
+}
+
+function postAnnouncement(){
+  const text = document.getElementById('announceText').value.trim();
+  if(!text) return;
+  const list = document.getElementById('announceList');
+  const item = document.createElement('div');
+  item.className = 'announce-item';
+  item.innerHTML = `
+    <div class="announce-icon">📢</div>
+    <div class="announce-text">
+      <div class="title">${text}</div>
+      <div class="time">Just now</div>
+    </div>
+    <div class="announce-tag">New</div>
+  `;
+  list.prepend(item);
+  document.getElementById('announceText').value = '';
+}
+
+function logout(){
+  localStorage.removeItem('disastersafe_staff_user');
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>

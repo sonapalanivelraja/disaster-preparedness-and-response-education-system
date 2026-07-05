@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family: Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#030b1f,#071b42,#0b2c5c);
+}
+
+.container{
+    width:400px;
+    padding:25px;
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+    color:white;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:10px;
+    border:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#00c3ff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.error{color:red;}
+.success{color:lightgreen;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email">
+
+    <select id="role">
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="staff">Staff</option>
+    </select>
+
+    <input type="text" id="college" placeholder="College Name">
+    <input type="password" id="password" placeholder="Password">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+    <div id="msg"></div>
+
+    <button onclick="signup()">Sign Up</button>
+</div>
+
+<script>
+function signup(){
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const role = document.getElementById("role").value;
+    const college = document.getElementById("college").value;
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+    const msg = document.getElementById("msg");
+
+    msg.innerHTML = "";
+
+    if(!name || !email || !role || !college || !password || !confirm){
+        msg.innerHTML = "<p class='error'>Fill all fields</p>";
+        return;
+    }
+
+    if(password !== confirm){
+        msg.innerHTML = "<p class='error'>Password mismatch</p>";
+        return;
+    }
+
+    fetch("http://localhost:3001/signup", {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            name,
+            email,
+            password,
+            role,
+            college
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if(data.success){
+            msg.innerHTML = "<p class='success'>Signup Success!</p>";
+
+            setTimeout(()=>{
+                window.location.href = "login.html";
+            },1500);
+
+        }else{
+            msg.innerHTML = "<p class='error'>" + data.message + "</p>";
+        }
+
+    })
+    .catch(err=>{
+        msg.innerHTML = "<p class='error'>Server Error</p>";
+        console.log(err);
+    });
+
+}
+</script>
+
+</body>
+</html>

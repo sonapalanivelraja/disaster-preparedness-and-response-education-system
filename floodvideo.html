@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flood Awareness Video</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right,#4facfe,#00f2fe);
+}
+
+.container{
+    width:85%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+h1{
+    color:#0077b6;
+}
+
+p{
+    color:#444;
+    font-size:18px;
+}
+
+video{
+    width:90%;
+    max-width:800px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#0077b6;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:18px;
+}
+
+.btn:hover{
+    background:#023e8a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌊 Flood Awareness Video 🌊</h1>
+
+<p>
+Watch this video to learn about flood safety measures,
+emergency preparedness and disaster response.
+</p>
+
+<video controls>
+    <source src="flood.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<br>
+
+<a href="disaster.html" class="btn">⬅ Back to Disaster Page</a>
+<div style="text-align:center; margin-top:20px;">
+  <button onclick="goToAssessment()" style="
+    padding:10px 20px;
+    background:#00ffcc;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+  ">
+    Next ➜ Assessment
+  </button>
+</div>
+
+<script>
+function goToAssessment() {
+  window.location.href = "floodassessment.html";
+}
+</script>
+
+</div>
+
+</body>
+</html>

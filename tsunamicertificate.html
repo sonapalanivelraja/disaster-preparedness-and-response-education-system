@@ -1,0 +1,260 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tsunami Awareness Certificate</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        body{
+            margin:0;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+            font-family:'Segoe UI',sans-serif;
+            padding:20px;
+        }
+
+        .wrapper{
+            text-align:center;
+        }
+
+        .cert{
+            width:850px;
+            max-width:95%;
+            padding:40px;
+            background:white;
+            box-shadow:0 0 30px rgba(0,0,0,0.5);
+            text-align:center;
+            position:relative;
+        }
+
+        .gold{
+            border:18px solid gold;
+        }
+
+        .silver{
+            border:18px solid silver;
+        }
+
+        .bronze{
+            border:18px solid #cd7f32;
+        }
+
+        .title{
+            font-size:40px;
+            font-weight:900;
+            letter-spacing:2px;
+        }
+
+        .gold .title{
+            color:goldenrod;
+        }
+
+        .silver .title{
+            color:#808080;
+        }
+
+        .bronze .title{
+            color:#cd7f32;
+        }
+
+        .sub{
+            font-size:22px;
+            margin:15px 0;
+            font-weight:bold;
+        }
+
+        .text{
+            font-size:20px;
+            color:#444;
+        }
+
+        .name{
+            font-size:38px;
+            font-weight:900;
+            margin:20px 0;
+            color:#0077b6;
+        }
+
+        .course{
+            font-size:22px;
+            font-weight:bold;
+            color:#023e8a;
+            margin-top:15px;
+        }
+
+        .score{
+            margin-top:15px;
+            font-size:20px;
+            font-weight:bold;
+            color:#222;
+        }
+
+        .date{
+            margin-top:20px;
+            font-size:18px;
+        }
+
+        .qr{
+            position:absolute;
+            right:20px;
+            bottom:20px;
+        }
+
+        button{
+            margin-top:20px;
+            padding:12px 25px;
+            border:none;
+            border-radius:30px;
+            background:#0077ff;
+            color:white;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:bold;
+        }
+
+        button:hover{
+            background:#0056cc;
+        }
+
+        @media print{
+            button{
+                display:none;
+            }
+
+            body{
+                background:white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div id="certificate" class="cert">
+
+        <div class="title">
+            🌊 TSUNAMI AWARENESS CERTIFICATE
+        </div>
+
+        <div class="sub" id="medalText"></div>
+
+        <div class="text">
+            This is to certify that
+        </div>
+
+        <div class="name" id="studentName"></div>
+
+        <div class="text">
+            has successfully completed the course
+        </div>
+
+        <div class="course">
+            Disaster Management System - Tsunami Awareness
+        </div>
+
+        <div class="score" id="scoreText"></div>
+
+        <div class="date" id="date"></div>
+
+        <div id="qrcode" class="qr"></div>
+
+    </div>
+
+    <button onclick="window.print()">
+        ⬇️ Download Certificate
+    </button>
+
+</div>
+
+<script>
+
+let studentName =
+localStorage.getItem("studentName") || "Student";
+
+let score =
+Number(localStorage.getItem("score")) || 0;
+
+let total =
+Number(localStorage.getItem("total")) || 10;
+
+let percentage =
+((score / total) * 100).toFixed(0);
+
+document.getElementById("studentName").innerText =
+studentName;
+
+document.getElementById("scoreText").innerHTML =
+"Score: " + score + "/" + total +
+" | Percentage: " + percentage + "%";
+
+let cert = document.getElementById("certificate");
+let medalText = document.getElementById("medalText");
+
+if(percentage >= 85){
+
+    cert.classList.add("gold");
+    medalText.innerHTML = "🥇 GOLD CERTIFICATE";
+
+}
+else if(percentage >= 70){
+
+    cert.classList.add("silver");
+    medalText.innerHTML = "🥈 SILVER CERTIFICATE";
+
+}
+else{
+
+    cert.classList.add("bronze");
+    medalText.innerHTML = "🥉 BRONZE CERTIFICATE";
+
+}
+
+let today = new Date();
+
+document.getElementById("date").innerHTML =
+"Date: " +
+today.toLocaleDateString("en-IN",{
+    day:'numeric',
+    month:'long',
+    year:'numeric'
+});
+
+new QRCode(
+document.getElementById("qrcode"),
+{
+    text:
+    "Tsunami Awareness Certificate | Student: " +
+    studentName +
+    " | Score: " + score + "/" + total +
+    " | Percentage: " + percentage + "%",
+
+    width:100,
+    height:100
+});
+
+</script>
+
+<script>
+const currentUser = JSON.parse(
+    localStorage.getItem("disastersafe_current_user")
+);
+
+if(currentUser){
+    document.getElementById("studentName").textContent =
+        currentUser.name;
+}else{
+    document.getElementById("studentName").textContent =
+        "Student";
+}
+</script>
+
+</body>
+</html>
+```

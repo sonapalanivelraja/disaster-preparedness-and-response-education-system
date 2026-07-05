@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earthquake Awareness Video</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right,#ff9a44,#fc6076);
+}
+
+.container{
+    width:85%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+h1{
+    color:#d62828;
+}
+
+p{
+    color:#444;
+    font-size:18px;
+    line-height:1.8;
+}
+
+video{
+    width:90%;
+    max-width:800px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#d62828;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#9d0208;
+}
+
+.next-btn{
+    padding:12px 25px;
+    background:#ff6b35;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.next-btn:hover{
+    background:#e85d04;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌍 Earthquake Awareness Video 🌍</h1>
+
+<p>
+Watch this video to learn about earthquake causes, safety measures,
+emergency preparedness, evacuation procedures, and disaster response.
+Understanding earthquake safety can help protect lives and reduce risks
+during seismic events.
+</p>
+
+<video controls>
+    <source src="earthquake.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<br>
+
+<a href="disaster.html" class="btn">⬅ Back to Disaster Page</a>
+
+<div style="text-align:center; margin-top:20px;">
+    <button onclick="goToAssessment()" class="next-btn">
+        Next ➜ Assessment
+    </button>
+</div>
+
+<script>
+function goToAssessment() {
+    window.location.href = "earthquakeassessment.html";
+}
+</script>
+
+</div>
+
+</body>
+</html>

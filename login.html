@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DisasterSafe Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#030b1f,#071b42,#0b2c5c);
+overflow:hidden;
+}
+
+body::before{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+background:#00f5ff;
+filter:blur(200px);
+top:-150px;
+left:-100px;
+opacity:.3;
+}
+
+body::after{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+background:#7b2cff;
+filter:blur(200px);
+bottom:-150px;
+right:-100px;
+opacity:.3;
+}
+
+.container{
+width:95%;
+max-width:550px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:30px;
+padding:35px;
+color:white;
+box-shadow:0 0 40px rgba(0,0,0,.3);
+position:relative;
+z-index:1;
+}
+
+h1{
+text-align:center;
+margin-bottom:5px;
+}
+
+.subtitle{
+text-align:center;
+color:#ccc;
+margin-bottom:25px;
+}
+
+.role-buttons{
+display:flex;
+gap:10px;
+margin-bottom:25px;
+}
+
+.role-btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+background:rgba(255,255,255,.08);
+color:white;
+transition:.3s;
+font-family:'Poppins',sans-serif;
+}
+
+.role-btn.active{
+background:linear-gradient(45deg,#00f5ff,#00c3ff);
+color:black;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+.input-group input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.1);
+color:white;
+font-family:'Poppins',sans-serif;
+font-size:14px;
+}
+
+.input-group input::placeholder{
+color:#ddd;
+}
+
+.password-box{
+position:relative;
+}
+
+.eye{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:18px;
+}
+
+.error{
+color:#ff6b6b;
+font-size:14px;
+margin-top:10px;
+text-align:center;
+}
+
+.login-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+margin-top:15px;
+font-weight:700;
+font-size:16px;
+cursor:pointer;
+background:linear-gradient(45deg,#00f5ff,#00c3ff);
+color:black;
+font-family:'Poppins',sans-serif;
+}
+
+.signup{
+text-align:center;
+margin-top:15px;
+font-size:14px;
+color:#ccc;
+}
+
+.signup a{
+color:#00f5ff;
+text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>DisasterSafe Login</h1>
+<p class="subtitle">Preparedness & Response Education System</p>
+
+<div class="role-buttons">
+<button class="role-btn active" onclick="selectRole('student',this)">🎓 Student</button>
+<button class="role-btn" onclick="selectRole('staff',this)">👨‍🏫 Staff</button>
+<button class="role-btn" onclick="selectRole('admin',this)">🛡️ Admin</button>
+</div>
+
+<div class="input-group">
+<input type="text" id="name" placeholder="Full Name">
+</div>
+
+<div id="registerField" class="input-group">
+<input type="text" id="registerNo" placeholder="Register Number">
+</div>
+
+<div id="collegeField" class="input-group">
+<input type="text" id="college" placeholder="School / College Name">
+</div>
+
+<div class="input-group">
+<input type="email" id="email" placeholder="Email Address">
+</div>
+
+<div class="input-group password-box">
+<input type="password" id="password" placeholder="Password">
+<span class="eye" onclick="togglePassword()">👁</span>
+</div>
+
+<div id="errorMsg" class="error"></div>
+
+<button class="login-btn" onclick="handleLogin()">Login</button>
+
+<div class="signup">
+Don't have an account?
+<a href="signup.html">Sign Up</a>
+</div>
+
+</div>
+
+<script>
+
+let currentRole = "student";
+
+const staffAccounts = [
+{ name:"Sona",          email:"sona@gmail.com",     password:"anos@123"     },
+{ name:"Bharani",       email:"bharani@gmail.com",  password:"inarahb@123"  },
+{ name:"Vignesh",       email:"vicky@gmail.com",    password:"ykciv@123"    },
+{ name:"Jagadeepkumar", email:"jagadeep@gmail.com", password:"peedagaj@123" }
+];
+
+function selectRole(role, btn){
+    currentRole = role;
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const registerField = document.getElementById('registerField');
+    const collegeField  = document.getElementById('collegeField');
+
+    if(role === "student"){
+        registerField.style.display = "block";
+        collegeField.style.display  = "block";
+    } else if(role === "staff"){
+        registerField.style.display = "none";
+        collegeField.style.display  = "block";
+    } else {
+        registerField.style.display = "none";
+        collegeField.style.display  = "none";
+    }
+}
+
+selectRole('student', document.querySelector('.role-btn'));
+
+function togglePassword(){
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function handleLogin(){
+
+    const name     = document.getElementById("name").value.trim();
+    const email    = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const error    = document.getElementById("errorMsg");
+
+    error.innerHTML = "";
+
+    if(!email || !password){
+        error.innerHTML = "❌ Please enter email and password.";
+        return;
+    }
+
+    // ── ADMIN ──────────────────────────────────────────
+    if(currentRole === "admin"){
+        if(name === "Vinothkumar C" && email === "vinothchinnasami@gmail.com"){
+            window.location.href = "admin.html";
+        } else {
+            error.innerHTML = "❌ Invalid Admin Credentials";
+        }
+        return;
+    }
+
+    // ── STAFF ──────────────────────────────────────────
+    if(currentRole === "staff"){
+        const staff = staffAccounts.find(s => s.email === email && s.password === password);
+        if(staff){
+            window.location.href = "staff.html";
+        } else {
+            error.innerHTML = "❌ Staff account not found. Contact administrator.";
+        }
+        return;
+    }
+
+    // ── STUDENT ────────────────────────────────────────
+    fetch("http://localhost:3001/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        email: email,
+        password: password,
+        role: currentRole
+    })
+})
+.then(res => res.json())
+.then(data => {
+
+    if(data.success){
+
+        localStorage.setItem(
+            "disastersafe_current_user",
+            JSON.stringify(data.user)
+        );
+
+        if(currentRole === "student"){
+            window.location.href = "student.html";
+        }else if(currentRole === "staff"){
+            window.location.href = "staff.html";
+        }
+
+    }else{
+        error.innerHTML = "❌ " + data.message;
+    }
+
+})
+.catch(err=>{
+    console.log(err);
+    error.innerHTML = "❌ Server Error";
+});
+}
+</script>
+
+</body>
+</html>

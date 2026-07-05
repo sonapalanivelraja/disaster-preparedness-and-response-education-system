@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cyclone Assessment</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef8ff;
+margin:0;
+}
+
+.container{
+width:90%;
+max-width:900px;
+margin:30px auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 10px gray;
+}
+
+h1{
+text-align:center;
+color:#0077b6;
+}
+
+.question{
+margin:20px 0;
+padding:15px;
+border-bottom:1px solid #ddd;
+}
+
+.q{
+font-weight:bold;
+margin-bottom:10px;
+}
+
+label{
+display:block;
+margin:8px 0;
+cursor:pointer;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:#0077b6;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#023e8a;
+}
+
+.result{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+color:green;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌪️ Cyclone Safety Assessment</h1>
+
+<form id="quizForm">
+
+<!-- Q1 -->
+<div class="question">
+<div class="q">1. Where do cyclones usually form?</div>
+<label><input type="radio" name="q1" value="a"> Cyclones usually form over warm ocean waters where moist air rises rapidly.</label>
+<label><input type="radio" name="q1" value="b"> Cyclones do not normally form in desert regions.</label>
+<label><input type="radio" name="q1" value="c"> Cyclones are not typically formed on mountain ranges.</label>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<div class="q">2. What should you do when a cyclone warning is issued?</div>
+<label><input type="radio" name="q2" value="a"> Ignoring a cyclone warning can put lives at risk.</label>
+<label><input type="radio" name="q2" value="b"> People should follow official instructions when a cyclone warning is issued.</label>
+<label><input type="radio" name="q2" value="c"> Going to the beach during a cyclone warning is dangerous.</label>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<div class="q">3. Which item is important in a cyclone emergency kit?</div>
+<label><input type="radio" name="q3" value="a"> Drinking water is an essential item in a cyclone emergency kit.</label>
+<label><input type="radio" name="q3" value="b"> Toys are not considered essential emergency supplies.</label>
+<label><input type="radio" name="q3" value="c"> Decorations are not required in an emergency preparedness kit.</label>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<div class="q">4. During a cyclone, where is the safest place?</div>
+<label><input type="radio" name="q4" value="a"> Staying indoors away from windows is the safest option during a cyclone.</label>
+<label><input type="radio" name="q4" value="b"> Taking shelter under a tree can be extremely dangerous during strong winds.</label>
+<label><input type="radio" name="q4" value="c"> Standing on a roof exposes people to serious risks during a cyclone.</label>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<div class="q">5. Cyclones can cause which natural hazard?</div>
+<label><input type="radio" name="q5" value="a"> Cyclones can cause severe flooding in affected areas.</label>
+<label><input type="radio" name="q5" value="b"> Cyclones do not normally result in snowfall.</label>
+<label><input type="radio" name="q5" value="c"> Cyclones are not responsible for causing drought conditions.</label>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<div class="q">6. What should you secure before a cyclone arrives?</div>
+<label><input type="radio" name="q6" value="a"> Loose outdoor objects should be secured before a cyclone arrives.</label>
+<label><input type="radio" name="q6" value="b"> Clouds cannot be secured before a cyclone.</label>
+<label><input type="radio" name="q6" value="c"> Roads are not objects that can be secured for cyclone preparedness.</label>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<div class="q">7. What should you avoid during a cyclone?</div>
+<label><input type="radio" name="q7" value="a"> Staying indoors is recommended and should not be avoided.</label>
+<label><input type="radio" name="q7" value="b"> Going near floodwaters should be avoided during a cyclone.</label>
+<label><input type="radio" name="q7" value="c"> Listening to official alerts is important for safety.</label>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<div class="q">8. Why should mobile phones be charged before a cyclone?</div>
+<label><input type="radio" name="q8" value="a"> Mobile phones should be charged to ensure communication during emergencies.</label>
+<label><input type="radio" name="q8" value="b"> Charging a phone only for playing games is not an emergency purpose.</label>
+<label><input type="radio" name="q8" value="c"> Taking selfies is not the main reason for charging phones before a cyclone.</label>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<div class="q">9. What should you do after a cyclone?</div>
+<label><input type="radio" name="q9" value="a"> People should check for damage and follow authorities' advice after a cyclone.</label>
+<label><input type="radio" name="q9" value="b"> Ignoring safety warnings after a cyclone can be dangerous.</label>
+<label><input type="radio" name="q9" value="c"> Entering damaged buildings immediately may put lives at risk.</label>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<div class="q">10. Which weather condition is commonly associated with cyclones?</div>
+<label><input type="radio" name="q10" value="a"> Strong winds and heavy rain are commonly associated with cyclones.</label>
+<label><input type="radio" name="q10" value="b"> A light breeze is not a typical feature of a cyclone.</label>
+<label><input type="radio" name="q10" value="c"> Dry weather is generally not associated with cyclones.</label>
+</div>
+<button type="button" onclick="checkResult()">Submit</button>
+
+</form>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function checkResult(){
+let score = 0;
+
+let answers = {
+q1:"a",
+q2:"b",
+q3:"a",
+q4:"a",
+q5:"a",
+q6:"a",
+q7:"b",
+q8:"a",
+q9:"a",
+q10:"a"
+};
+
+for(let i=1;i<=10;i++){
+let q = document.querySelector('input[name="q'+i+'"]:checked');
+
+if(q && q.value === answers["q"+i]){
+score++;
+}
+}
+
+localStorage.setItem("score", score);
+localStorage.setItem("total", 10);
+
+window.location.href = "cycloneresult.html";
+}
+
+</script>
+
+</body>
+</html>
+```
