@@ -16,7 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 // MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/disasterDB")
+require("dotenv").config();
+
+
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log("✅ MongoDB Connected Successfully");
 })
@@ -24,6 +27,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/disasterDB")
     console.log("❌ MongoDB Connection Failed");
     console.error(err);
 });
+
+
 
 // Routes
 app.get("/", (req, res) => {
