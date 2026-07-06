@@ -232,16 +232,6 @@ app.get("/students", async (req, res) => {
 
 });
 
-console.log("login exists:", fs.existsSync(path.join(__dirname, "login.html")));
-console.log("home exists:", fs.existsSync(path.join(__dirname, "home.html")));
-console.log("========== ROUTES ==========");
-app._router.stack.forEach((r) => {
-  if (r.route) {
-    console.log(Object.keys(r.route.methods)[0].toUpperCase(), r.route.path);
-  }
-});
-console.log("============================");
-
 // Start Server
 app.listen(3001, () => {
   console.log("Server running on port 3001");
