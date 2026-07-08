@@ -13,7 +13,7 @@ const PORT = 3001;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "..")));
 
 // MongoDB Connection
 require("dotenv").config();
@@ -52,8 +52,9 @@ app.get("/hello", (req, res) => {
 });
 
 /// Home
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "..", "home.html"));
 });
 
 // Hello Test
@@ -67,9 +68,7 @@ app.get("/test", (req, res) => {
 });
 
 // Signup Page
-app.get("/signup.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "signup.html"));
-});
+
 app.post("/login", async (req, res) => {
     try {
         const { email, password, role } = req.body;
@@ -99,6 +98,9 @@ app.post("/login", async (req, res) => {
             message: err.message
         });
     }
+});
+pp.get("/signup.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "signup.html"));
 });
 app.post("/flood-assessment", async (req, res) => {
 
