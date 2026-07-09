@@ -1,10 +1,5 @@
 
-app.post("/flood-assessment", async (req, res) => {
-
-    console.log("Flood Assessment Request Received");
-    console.log(req.body);
-
-    try {<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -171,6 +166,7 @@ fetch("http://localhost:3001/flood-assessment", {
         total: 10
     })
 })
+
 .then(res => res.json())
 .then(data => {
 
