@@ -95,19 +95,8 @@ function signup(){
     }
 
     localStorage.setItem('user', JSON.stringify(user)); {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-            name,
-            email,
-            password,
-            role,
-            college
-        })
-    })
-    .then(res => res.json())
+        
+    then(res => res.json())
     .then(data => {
 
         if(data.success){
@@ -128,7 +117,4 @@ function signup(){
     });
 
 }
-</script>
-
-</body>
-</html>
+}

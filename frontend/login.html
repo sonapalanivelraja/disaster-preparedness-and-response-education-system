@@ -283,19 +283,17 @@ function handleLogin(){
     }
 
     // ── STUDENT ────────────────────────────────────────
-    const user = JSON.parse(localStorage.getItem('user')); {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        email: email,
-        password: password,
-        role: currentRole
-    })
-})
-.then(res => res.json())
-.then(data => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+if (user &&
+    user.email === email &&
+    user.password === password &&
+    user.role === currentRole) {
+    // login success
+    window.location.href = "student.html"; // அல்லது தேவையான page
+} else {
+    alert("Invalid credentials");
+}
 
     if(data.success){
 
@@ -314,11 +312,6 @@ function handleLogin(){
         error.innerHTML = "❌ " + data.message;
     }
 
-})
-.catch(err=>{
-    console.log(err);
-    error.innerHTML = "❌ Server Error";
-});
 }
 </script>
 
