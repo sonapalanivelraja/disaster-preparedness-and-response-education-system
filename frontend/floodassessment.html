@@ -154,35 +154,8 @@ localStorage.setItem("total", 10);
 const currentUser = JSON.parse(
     localStorage.getItem("disastersafe_current_user")
 );
-
-fetch("http://localhost:3001/flood-assessment", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        email: currentUser.email,
-        score: score,
-        total: 10
-    })
-})
-
-.then(res => res.json())
-.then(data => {
-
-    if(data.success){
-        window.location.href = "floodresult.html";
-    }else{
-        alert(data.message);
-    }
-
-})
-.catch(err => {
-    console.log(err);
-    alert("Server Error");
-});
+window.location.href = "floodresult.html";
 }
 </script>
-
 </body>
 </html>
