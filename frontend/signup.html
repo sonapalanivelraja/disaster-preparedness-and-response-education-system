@@ -68,7 +68,7 @@ button{
 
     <div id="msg"></div>
 
-    <button onclick="signup">signup</button>
+    <button onclick="signup()">signup</button>
 </div>
 
 <script>
@@ -93,28 +93,10 @@ function signup(){
         msg.innerHTML = "<p class='error'>Password mismatch</p>";
         return;
     }
-
-    localStorage.setItem('user', JSON.stringify(user)); {
-        
-    then(res => res.json())
-    .then(data => {
-
-        if(data.success){
-            msg.innerHTML = "<p class='success'>signup Success!</p>";
-
-            setTimeout(()=>{
-                window.location.href = "login.html";
-            },1500);
-
-        }else{
-            msg.innerHTML = "<p class='error'>" + data.message + "</p>";
-        }
-
-    })
-    .catch(err=>{
-        msg.innerHTML = "<p class='error'>Server Error</p>";
-        console.log(err);
-    });
-
-}
+    const user = { name, email, role, college, password };
+localStorage.setItem("user", JSON.stringify(user));
+msg.innerHTML = "<p class='success'>Signup Success!</p>";
+setTimeout(() => {
+    window.location.href = "login.html";
+}, 1500);
 }
