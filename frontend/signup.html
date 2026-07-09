@@ -68,11 +68,11 @@ button{
 
     <div id="msg"></div>
 
-    <button onclick="signup">SignUp</button>
+    <button onclick="signUp">SignUp</button>
 </div>
 
 <script>
-function signup(){
+function signUp(){
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -100,7 +100,7 @@ function signup(){
     .then(data => {
 
         if(data.success){
-            msg.innerHTML = "<p class='success'>Signup Success!</p>";
+            msg.innerHTML = "<p class='success'>SignUp Success!</p>";
 
             setTimeout(()=>{
                 window.location.href = "login.html";
