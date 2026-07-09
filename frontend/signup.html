@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign Up</title>
+<title>signup</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -68,11 +68,11 @@ button{
 
     <div id="msg"></div>
 
-    <button onclick="signUp">SignUp</button>
+    <button onclick="signup">signup</button>
 </div>
 
 <script>
-function signUp(){
+function signup(){
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -100,7 +100,7 @@ function signUp(){
     .then(data => {
 
         if(data.success){
-            msg.innerHTML = "<p class='success'>SignUp Success!</p>";
+            msg.innerHTML = "<p class='success'>signup Success!</p>";
 
             setTimeout(()=>{
                 window.location.href = "login.html";
