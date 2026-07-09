@@ -1,228 +1,392 @@
-```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Student Result</title>
 
-    <style>
-        body{
-            margin:0;
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-family:'Segoe UI',sans-serif;
-            background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .card{
-            width:380px;
-            padding:35px;
-            border-radius:25px;
-            background:rgba(255,255,255,0.08);
-            backdrop-filter:blur(15px);
-            box-shadow:0 10px 30px rgba(0,0,0,0.5);
-            text-align:center;
-            color:white;
-            border:1px solid rgba(255,255,255,0.2);
-        }
+<title>Certificate</title>
 
-        h1{
-            color:#00c6ff;
-            text-shadow:0 0 10px #00c6ff;
-            margin-bottom:10px;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        .student-name{
-            font-size:18px;
-            margin-bottom:15px;
-            color:#ffffff;
-            font-weight:bold;
-        }
+<style>
 
-        .circle{
-            width:150px;
-            height:150px;
-            border-radius:50%;
-            background:conic-gradient(#00c6ff 0deg,#2c5364 0deg);
-            margin:20px auto;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            box-shadow:0 0 25px #00c6ff;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .inner{
-            width:115px;
-            height:115px;
-            background:#0f2027;
-            border-radius:50%;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction:column;
-        }
+body{
 
-        .percent{
-            font-size:28px;
-            font-weight:900;
-            color:#00c6ff;
-        }
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 
-        .label{
-            font-size:12px;
-            color:#bbb;
-        }
+    display:flex;
 
-        .scoreBox{
-            margin-top:20px;
-            font-size:20px;
-            font-weight:bold;
-        }
+    justify-content:center;
 
-        .pass{
-            color:#00ff99;
-            font-size:24px;
-            font-weight:900;
-            margin-top:15px;
-        }
+    align-items:center;
 
-        .fail{
-            color:#ff4d4d;
-            font-size:24px;
-            font-weight:900;
-            margin-top:15px;
-        }
+    min-height:100vh;
 
-        button{
-            margin-top:25px;
-            padding:12px 25px;
-            border:none;
-            border-radius:50px;
-            background:linear-gradient(45deg,#00c6ff,#0072ff);
-            color:white;
-            font-size:15px;
-            font-weight:bold;
-            cursor:pointer;
-            transition:.3s;
-        }
+    font-family:'Segoe UI',sans-serif;
 
-        button:hover{
-            transform:scale(1.05);
-            box-shadow:0 0 20px #00c6ff;
-        }
-    </style>
+    padding:30px;
+
+}
+
+.wrapper{
+
+    text-align:center;
+
+}
+
+.cert{
+
+    width:1300px;
+
+    min-height:620px;
+
+    background:#fff;
+
+    border:18px solid gold;
+
+    border-radius:8px;
+
+    position:relative;
+
+    padding:40px;
+
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+
+}
+
+.logo{
+    display:block;
+    margin:0 auto;
+    width:200px;
+}
+.title{
+
+    font-size:42px;
+
+    font-weight:900;
+
+    color:goldenrod;
+
+    letter-spacing:2px;
+
+}
+
+.medal{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+}
+
+.system{
+
+    margin-top:12px;
+
+    font-size:18px;
+
+    color:#555;
+
+}
+
+.text{
+
+    margin-top:28px;
+
+    font-size:22px;
+
+    color:#444;
+
+}
+
+.name{
+
+    margin-top:18px;
+
+    font-size:40px;
+
+    color:#0077b6;
+
+    font-weight:bold;
+
+}
+
+.course{
+
+    margin-top:18px;
+
+    font-size:24px;
+
+    color:#023e8a;
+
+    font-weight:bold;
+
+}
+
+.score{
+
+    margin-top:18px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#222;
+
+}
+
+.date{
+
+    margin-top:18px;
+
+    font-size:18px;
+
+}
+
+.qr{
+
+    position:absolute;
+
+    left:35px;
+
+    bottom:30px;
+
+}
+.signature{
+    position:absolute;
+    right:35px;
+    bottom:20px;
+    text-align:center;
+    line-height:1.1;
+}
+
+.signature img{
+    width:130px;
+    display:block;
+    margin:0 auto -8px auto;
+}
+
+.signature hr{
+    width:170px;
+    margin:0 auto;
+}
+
+.signature b{
+    display:block;
+    margin-top:2px;
+}
+
+.signature small{
+    display:block;
+    margin-top:0;
+}
+button{
+
+    margin-top:20px;
+
+    padding:12px 28px;
+
+    background:#0077ff;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#0056cc;
+
+}
+
+@media print{
+
+button{
+
+display:none;
+
+}
+
+body{
+
+background:white;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="card">
+<div class="wrapper">
 
-    <h1>🎯 RESULT</h1>
+<div id="certificate" class="cert">
 
-    <div class="student-name" id="studentName"></div>
+<img src="NDMA-1.jpg" class="logo">
 
-    <div class="circle" id="circle">
-        <div class="inner">
-            <div class="percent" id="percent">0%</div>
-            <div class="label">Percentage</div>
-        </div>
-    </div>
+<h1 class="title">
 
-    <div class="scoreBox">
-        Score: <span id="score"></span>
-    </div>
+CERTIFICATE OF COMPLETION
 
-    <div id="status"></div>
+</h1>
 
-    <button onclick="goCertificate()">
-        🎓 Go To Certificate
-    </button>
+<div id="medalText" class="medal"></div>
+
+<div class="system">
+
+Disaster Preparedness and Response Education System
+
+</div>
+<div class="text">
+    This is to certify that
+</div>
+
+<div id="studentName" class="name">
+    Student Name
+</div>
+
+<div class="text">
+    has successfully completed the course
+</div>
+
+<div class="course">
+    Disaster Management System – landslide Awareness
+</div>
+
+<div id="scoreText" class="score"></div>
+
+<div id="date" class="date"></div>
+
+<div id="qrcode" class="qr"></div>
+
+<div class="signature">
+<img src="signatures-download-clipart-29.png">
+<hr>
+<b>Mr. Vinothkumar C</b>
+<small>Project Guide / Authorized Signatory</small>
+
+</div>
+
+</div>
+
+<button onclick="window.print()">
+    ⬇️ Download Certificate
+</button>
 
 </div>
 
 <script>
 
-    // Get data from localStorage
-    let score = Number(localStorage.getItem("score")) || 0;
-    let total = Number(localStorage.getItem("total")) || 10;
-    let studentName = localStorage.getItem("studentName") || "Student";
+let studentName =
+localStorage.getItem("studentName") || "Student";
 
-    document.getElementById("studentName").innerText =
-        "👨‍🎓 " + studentName;
-
-    let percentage = (score / total) * 100;
-
-    document.getElementById("score").innerText =
-        score + " / " + total;
-
-    let circle = document.getElementById("circle");
-    let percentText = document.getElementById("percent");
-
-    let current = 0;
-
-    let interval = setInterval(() => {
-
-        if(current <= percentage){
-
-            percentText.innerText =
-                current.toFixed(0) + "%";
-
-            let angle = (current / 100) * 360;
-
-            circle.style.background =
-                `conic-gradient(
-                #00c6ff ${angle}deg,
-                #2c5364 ${angle}deg
-                )`;
-
-            current++;
-
-        }else{
-            clearInterval(interval);
-        }
-
-    },15);
-
-    let status = document.getElementById("status");
-
-    if(percentage >= 50){
-
-        status.innerHTML =
-        "<div class='pass'>✔ PASS</div>";
-
-    }else{
-
-        status.innerHTML =
-        "<div class='fail'>✖ FAIL</div>";
-
-    }
-
-    function goCertificate(){
-
-        if(percentage >= 50){
-            window.location.href = "certificate.html";
-        }else{
-            alert("Sorry! Only passed students can get certificates.");
-        }
-
-    }
-
-</script>
-<script>
-const currentUser = JSON.parse(
-    localStorage.getItem("disastersafe_current_user")
-);
+const currentUser =
+JSON.parse(localStorage.getItem("disastersafe_current_user"));
 
 if(currentUser){
-    document.getElementById("studentName").textContent =
-        currentUser.name;
-}else{
-    document.getElementById("studentName").textContent =
-        "Student";
+    studentName = currentUser.name;
 }
+
+let score =
+Number(localStorage.getItem("score")) || 0;
+
+let total =
+Number(localStorage.getItem("total")) || 10;
+
+let percentage =
+((score / total) * 100).toFixed(0);
+
+document.getElementById("studentName").textContent =
+studentName;
+
+document.getElementById("scoreText").innerHTML =
+"Score : " + score + " / " + total +
+" &nbsp;&nbsp; | &nbsp;&nbsp; Percentage : " + percentage + "%";
+
+let medal =
+document.getElementById("medalText");
+
+let cert =
+document.getElementById("certificate");
+if (percentage >= 85) {
+
+    cert.classList.add("gold");
+    medal.textContent = "🥇 GOLD CERTIFICATE";
+
+}
+else if (percentage >= 70) {
+
+    cert.classList.add("silver");
+    medal.textContent = "🥈 SILVER CERTIFICATE";
+
+}
+else {
+
+    cert.classList.add("bronze");
+    medal.textContent = "🥉 BRONZE CERTIFICATE";
+
+}
+
+let today = new Date();
+
+document.getElementById("date").innerHTML =
+"Date : " +
+today.toLocaleDateString("en-IN",{
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+});
+
+new QRCode(
+    document.getElementById("qrcode"),
+    {
+        text:
+        "Student : " + studentName +
+        "\nScore : " + score + "/" + total +
+        "\nPercentage : " + percentage + "%",
+
+        width:100,
+        height:100
+    }
+);
+
+if (percentage >= 85) {
+    cert.style.borderColor = "gold";
+    document.querySelector(".title").style.color = "goldenrod";
+}
+else if (percentage >= 70) {
+    cert.style.borderColor = "silver";
+    document.querySelector(".title").style.color = "#808080";
+}
+else {
+    cert.style.borderColor = "#cd7f32";
+    document.querySelector(".title").style.color = "#cd7f32";
+}
+
 </script>
 
 </body>
+
 </html>
-```

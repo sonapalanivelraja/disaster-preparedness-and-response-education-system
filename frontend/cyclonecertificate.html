@@ -1,174 +1,299 @@
-``html
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Certificate</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body{
-            margin:0;
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-            font-family:'Segoe UI',sans-serif;
-            padding:20px;
-        }
+<title>Certificate</title>
 
-        .wrapper{
-            text-align:center;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        .cert{
-            width:850px;
-            max-width:95%;
-            padding:40px;
-            background:white;
-            box-shadow:0 0 30px rgba(0,0,0,0.5);
-            text-align:center;
-            position:relative;
-        }
+<style>
 
-        .gold{
-            border:18px solid gold;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .silver{
-            border:18px solid silver;
-        }
+body{
 
-        .bronze{
-            border:18px solid #cd7f32;
-        }
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 
-        .title{
-            font-size:40px;
-            font-weight:900;
-            letter-spacing:2px;
-        }
+    display:flex;
 
-        .gold .title{
-            color:goldenrod;
-        }
+    justify-content:center;
 
-        .silver .title{
-            color:#808080;
-        }
+    align-items:center;
 
-        .bronze .title{
-            color:#cd7f32;
-        }
+    min-height:100vh;
 
-        .sub{
-            font-size:22px;
-            margin:15px 0;
-            font-weight:bold;
-        }
+    font-family:'Segoe UI',sans-serif;
 
-        .text{
-            font-size:20px;
-            color:#444;
-        }
+    padding:30px;
 
-        .name{
-            font-size:38px;
-            font-weight:900;
-            margin:20px 0;
-            color:#0077b6;
-        }
+}
 
-        .course{
-            font-size:22px;
-            font-weight:bold;
-            color:#023e8a;
-            margin-top:15px;
-        }
+.wrapper{
 
-        .score{
-            margin-top:15px;
-            font-size:20px;
-            font-weight:bold;
-            color:#222;
-        }
+    text-align:center;
 
-        .date{
-            margin-top:20px;
-            font-size:18px;
-        }
+}
 
-        .qr{
-            position:absolute;
-            right:20px;
-            bottom:20px;
-        }
+.cert{
 
-        button{
-            margin-top:20px;
-            padding:12px 25px;
-            border:none;
-            border-radius:30px;
-            background:#0077ff;
-            color:white;
-            cursor:pointer;
-            font-size:16px;
-            font-weight:bold;
-        }
+    width:1300px;
 
-        button:hover{
-            background:#0056cc;
-        }
+    min-height:620px;
 
-        @media print{
-            button{
-                display:none;
-            }
+    background:#fff;
 
-            body{
-                background:white;
-            }
-        }
-    </style>
+    border:18px solid gold;
+
+    border-radius:8px;
+
+    position:relative;
+
+    padding:40px;
+
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+
+}
+
+.logo{
+    display:block;
+    margin:0 auto;
+    width:200px;
+}
+.title{
+
+    font-size:42px;
+
+    font-weight:900;
+
+    color:goldenrod;
+
+    letter-spacing:2px;
+
+}
+
+.medal{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+}
+
+.system{
+
+    margin-top:12px;
+
+    font-size:18px;
+
+    color:#555;
+
+}
+
+.text{
+
+    margin-top:28px;
+
+    font-size:22px;
+
+    color:#444;
+
+}
+
+.name{
+
+    margin-top:18px;
+
+    font-size:40px;
+
+    color:#0077b6;
+
+    font-weight:bold;
+
+}
+
+.course{
+
+    margin-top:18px;
+
+    font-size:24px;
+
+    color:#023e8a;
+
+    font-weight:bold;
+
+}
+
+.score{
+
+    margin-top:18px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#222;
+
+}
+
+.date{
+
+    margin-top:18px;
+
+    font-size:18px;
+
+}
+
+.qr{
+
+    position:absolute;
+
+    left:35px;
+
+    bottom:30px;
+
+}
+.signature{
+    position:absolute;
+    right:35px;
+    bottom:20px;
+    text-align:center;
+    line-height:1.1;
+}
+
+.signature img{
+    width:130px;
+    display:block;
+    margin:0 auto -8px auto;
+}
+
+.signature hr{
+    width:170px;
+    margin:0 auto;
+}
+
+.signature b{
+    display:block;
+    margin-top:2px;
+}
+
+.signature small{
+    display:block;
+    margin-top:0;
+}
+button{
+
+    margin-top:20px;
+
+    padding:12px 28px;
+
+    background:#0077ff;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#0056cc;
+
+}
+
+@media print{
+
+button{
+
+display:none;
+
+}
+
+body{
+
+background:white;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="wrapper">
 
-    <div id="certificate" class="cert">
+<div id="certificate" class="cert">
 
-        <div class="title">
-            CERTIFICATE OF COMPLETION
-        </div>
+<img src="NDMA-1.jpg" class="logo">
 
-        <div class="sub" id="medalText"></div>
+<h1 class="title">
 
-        <div class="text">
-            This is to certify that
-        </div>
+CERTIFICATE OF COMPLETION
 
-        <div class="name" id="studentName"></div>>
-        <div class="text">
-            has successfully completed the course
-        </div>
+</h1>
 
-        <div class="course">
-            Disaster Management System - Cyclone Awareness
-        </div>
+<div id="medalText" class="medal"></div>
 
-        <div class="score" id="scoreText"></div>
+<div class="system">
 
-        <div class="date" id="date"></div>
+Disaster Preparedness and Response Education System
 
-        <div id="qrcode" class="qr"></div>
+</div>
+<div class="text">
+    This is to certify that
+</div>
 
-    </div>
+<div id="studentName" class="name">
+    Student Name
+</div>
 
-    <button onclick="window.print()">
-        ⬇️ Download Certificate
-    </button>
+<div class="text">
+    has successfully completed the course
+</div>
+
+<div class="course">
+    Disaster Management System – cyclone Awareness
+</div>
+
+<div id="scoreText" class="score"></div>
+
+<div id="date" class="date"></div>
+
+<div id="qrcode" class="qr"></div>
+
+<div class="signature">
+<img src="signatures-download-clipart-29.png">
+<hr>
+<b>Mr. Vinothkumar C</b>
+<small>Project Guide / Authorized Signatory</small>
+
+</div>
+
+</div>
+
+<button onclick="window.print()">
+    ⬇️ Download Certificate
+</button>
 
 </div>
 
@@ -176,6 +301,13 @@
 
 let studentName =
 localStorage.getItem("studentName") || "Student";
+
+const currentUser =
+JSON.parse(localStorage.getItem("disastersafe_current_user"));
+
+if(currentUser){
+    studentName = currentUser.name;
+}
 
 let score =
 Number(localStorage.getItem("score")) || 0;
@@ -186,72 +318,75 @@ Number(localStorage.getItem("total")) || 10;
 let percentage =
 ((score / total) * 100).toFixed(0);
 
-document.getElementById("studentName").innerText =
+document.getElementById("studentName").textContent =
 studentName;
 
 document.getElementById("scoreText").innerHTML =
-"Score: " + score + "/" + total +
-" | Percentage: " + percentage + "%";
+"Score : " + score + " / " + total +
+" &nbsp;&nbsp; | &nbsp;&nbsp; Percentage : " + percentage + "%";
 
-let cert = document.getElementById("certificate");
-let medalText = document.getElementById("medalText");
+let medal =
+document.getElementById("medalText");
 
-if(percentage >= 85){
+let cert =
+document.getElementById("certificate");
+if (percentage >= 85) {
 
     cert.classList.add("gold");
-    medalText.innerHTML = "🥇 GOLD CERTIFICATE";
+    medal.textContent = "🥇 GOLD CERTIFICATE";
 
 }
-else if(percentage >= 70){
+else if (percentage >= 70) {
 
     cert.classList.add("silver");
-    medalText.innerHTML = "🥈 SILVER CERTIFICATE";
+    medal.textContent = "🥈 SILVER CERTIFICATE";
 
 }
-else{
+else {
 
     cert.classList.add("bronze");
-    medalText.innerHTML = "🥉 BRONZE CERTIFICATE";
+    medal.textContent = "🥉 BRONZE CERTIFICATE";
 
 }
 
 let today = new Date();
 
 document.getElementById("date").innerHTML =
-"Date: " +
+"Date : " +
 today.toLocaleDateString("en-IN",{
-    day:'numeric',
-    month:'long',
-    year:'numeric'
+    day:"numeric",
+    month:"long",
+    year:"numeric"
 });
 
 new QRCode(
-document.getElementById("qrcode"),
-{
-    text:
-    "Student: " + studentName +
-    " | Score: " + score + "/" + total +
-    " | Percentage: " + percentage + "%",
+    document.getElementById("qrcode"),
+    {
+        text:
+        "Student : " + studentName +
+        "\nScore : " + score + "/" + total +
+        "\nPercentage : " + percentage + "%",
 
-    width:100,
-    height:100
-});
-
-</script>
-<script>
-const currentUser = JSON.parse(
-    localStorage.getItem("disastersafe_current_user")
+        width:100,
+        height:100
+    }
 );
 
-if(currentUser){
-    document.getElementById("studentName").textContent =
-        currentUser.name;
-}else{
-    document.getElementById("studentName").textContent =
-        "Student";
+if (percentage >= 85) {
+    cert.style.borderColor = "gold";
+    document.querySelector(".title").style.color = "goldenrod";
 }
+else if (percentage >= 70) {
+    cert.style.borderColor = "silver";
+    document.querySelector(".title").style.color = "#808080";
+}
+else {
+    cert.style.borderColor = "#cd7f32";
+    document.querySelector(".title").style.color = "#cd7f32";
+}
+
 </script>
 
 </body>
+
 </html>
-```
