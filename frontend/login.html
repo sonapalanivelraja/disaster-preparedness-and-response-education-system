@@ -253,7 +253,7 @@ function handleLogin(){
     const email    = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const error    = document.getElementById("errorMsg");
-
+   
     error.innerHTML = "";
 
     if(!email || !password){
@@ -284,6 +284,9 @@ function handleLogin(){
 
     // ── STUDENT ────────────────────────────────────────
     const user = JSON.parse(localStorage.getItem("user"));
+localStorage.setItem("disastersafe_current_user", JSON.stringify(user));
+window.location.href = "student.html";
+
 
 if (user &&
     user.email === email &&
